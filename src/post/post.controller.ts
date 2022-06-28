@@ -1,11 +1,11 @@
 /* eslint-disable prettier/prettier */
-import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
-import PostsService from './posts.service';
+import { Body, Controller, Delete, Get, Param, Post, Put, UsePipes, ValidationPipe } from '@nestjs/common';
+import { PostsService } from './post.service';
 import { CreatePostDto } from './dto/createPost.dto';
 import { UpdatePostDto } from './dto/updatePost.dto';
 
 @Controller('posts')
-export default class PostsController {
+export class PostsController {
     constructor(private readonly postsServise: PostsService) { }
 
     @Get()
@@ -19,7 +19,10 @@ export default class PostsController {
     }
 
     @Post()
+    @UsePipes(ValidationPipe)
     async createPost(@Body() post: CreatePostDto) {
+        console.log("Controller ====>>> ", post);
+
         return this.postsServise.createPost(post)
     }
 
