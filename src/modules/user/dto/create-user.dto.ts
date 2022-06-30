@@ -6,18 +6,23 @@ import {
     MaxLength,
     IsNumber,
 } from 'class-validator';
+import { Post } from 'src/modules/post/entities/post.entity';
+export class CreateUserDto {
 
-export class CreatePostDto {
+    @IsString()
+    @IsNotEmpty()
+    name: string;
+
     @IsNumber()
     @IsNotEmpty()
-    id: number;
+    password: number;
 
     @IsString()
     @MinLength(200)
     @MaxLength(4000)
-    content: string;
+    bio: string;
 
     @IsString()
     @IsNotEmpty()
-    title: string;
+    posts: Post[];
 }

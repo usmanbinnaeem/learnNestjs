@@ -1,12 +1,11 @@
 /* eslint-disable prettier/prettier */
 import { Module } from '@nestjs/common';
-import { PostsModule } from './post/post.module';
+import { PostsModule } from './modules/post/post.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Post } from "./post/entities/post.entity";
+import { UserModule } from './modules/user/user.module'
 
 @Module({
   imports: [
-    PostsModule,
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: 'localhost',
@@ -14,9 +13,11 @@ import { Post } from "./post/entities/post.entity";
       username: 'postgres',
       password: 'test',
       database: 'nest_api',
-      entities: [Post],
+      autoLoadEntities: true,
       synchronize: true,
     }),
+    PostsModule,
+    UserModule,
   ],
   controllers: [],
   providers: [],

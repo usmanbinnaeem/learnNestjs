@@ -1,5 +1,6 @@
 /* eslint-disable prettier/prettier */
-import { Column, Entity, PrimaryColumn } from "typeorm";
+import { Column, Entity, ManyToOne, PrimaryColumn } from "typeorm";
+import { User } from "../../user/entities/user.entity";
 
 @Entity('posts')
 export class Post {
@@ -11,4 +12,10 @@ export class Post {
 
     @Column({ nullable: false })
     content: string;
+
+    @ManyToOne(() => User, user => user.posts)
+    author: User;
+
+    @Column({ nullable: true })
+    likes: string;
 }
