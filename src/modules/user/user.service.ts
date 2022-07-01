@@ -12,7 +12,7 @@ export class UserService {
     @InjectRepository(User) private readonly userRepositry: Repository<User>
   ) { }
 
-  createPost(createUserDto: CreateUserDto) {
+  createUser(createUserDto: CreateUserDto) {
     return this.userRepositry.save(createUserDto)
   }
 
@@ -32,14 +32,4 @@ export class UserService {
     return await this.userRepositry.delete({ id });
   }
 
-  async getUsers() {
-    return await this.userRepositry.find()
-  }
-
-  async getUserbyName(id: number, name: string) {
-    const user = await this.userRepositry.findOneBy({ id })
-    if (user.name === name) {
-      return user;
-    }
-  }
 }

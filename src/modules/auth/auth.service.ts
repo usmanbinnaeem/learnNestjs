@@ -12,15 +12,9 @@ export class AuthService {
     return 'This action adds a new auth';
   }
 
-  async validateUser(id: number, name: string, password: number): Promise<any> {
-    const user = await this.userService.getUserbyName(id, name)
+  signInLocal() { }
 
-    if (user && user.password === password) {
-      const { password, name, ...rest } = user;
-      return rest;
-    }
-    return null;
-  }
+  signUpLocal() { }
 
   findAll() {
     return `This action returns all auth`;

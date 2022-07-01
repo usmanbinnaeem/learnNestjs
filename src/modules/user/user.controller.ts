@@ -10,17 +10,7 @@ export class UserController {
 
   @Post()
   createPost(@Body() createUserDto: CreateUserDto) {
-    return this.userService.createPost(createUserDto);
-  }
-
-  @Post('login')
-  login(): any {
-    return {}
-  }
-
-  @Get('protected')
-  getUser(): any {
-    return this.userService.getUsers()
+    return this.userService.createUser(createUserDto);
   }
 
   @Get()
